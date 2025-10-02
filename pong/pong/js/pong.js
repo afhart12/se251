@@ -14,6 +14,12 @@ p1.w = 20
 p1.h = 150
 p1.x = 0 + p1.w/2
 
+//p2 setup
+var p2 = new Box();
+p2.w = 20
+p2.h = 150
+p2.x = 120 + p2.w/2
+
 //ball setup
 var ball = new Box();
 ball.w = 20
@@ -84,8 +90,14 @@ function main()
         ball.x = p1.x + p1.w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
+    elif(ball.collide(p2))
+    {
+        ball.x = p2.x + p2.w/2 + ball.w/2
+        ball.vx = -ball.vx;
+    }
 
     //draw the objects
     p1.draw()
+    p2.draw()
     ball.draw()
 }
