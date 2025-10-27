@@ -28,9 +28,10 @@ ball.vx = -2
 ball.vy = -2
 ball.color = `black`
 
-let obj = new Player();
-obj.add("Player1");
-obj.add("Player2");
+var player = new Player();
+
+Player.add("Player 1", p1);
+Player.add("Player 2", p2);
 
 function main()
 {
