@@ -28,10 +28,8 @@ ball.vx = -2
 ball.vy = -2
 ball.color = `black`
 
-var player = new Player();
-
-Player.add("Player 1", p1);
-Player.add("Player 2", p2);
+var p1 = new Player("Player 1", "blue", 20, c.height/2);
+var p2 = new Player("Player 2", "red", c.width - 20, c.height/2);
 
 function main()
 {
