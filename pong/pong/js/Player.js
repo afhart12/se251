@@ -15,6 +15,18 @@ class Player
 
     }
 
+    move(upKey, downKey, keys, friction, canvasHeight)
+    {
+    if (keys[upKey]) this.pad.vy -= this.pad.force;
+    if (keys[downKey]) this.pad.vy += this.pad.force;
+    this.pad.vy *= friction;
+    this.pad.move();
+
+    if (this.pad.y < this.pad.h / 2) this.pad.y = this.pad.h / 2;
+    if (this.pad.y > canvasHeight - this.pad.h / 2) this.pad.y = canvasHeight - this.pad.h / 2;
+
+    }
+
     draw()
     {
         this.pad.draw();

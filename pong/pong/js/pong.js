@@ -49,8 +49,7 @@ function main()
     //applies friction
     p1.vy *= fy
     //player movement
-    p1.move();
-
+    p1.move("w", "s", keys, fy, c.height);
     //p2 accelerates when key is pressed
     if(keys['w'])
     {
@@ -63,7 +62,7 @@ function main()
 
     //friction
     p2.vy *= fy;
-    p2.move();
+    p2.move("ArrowUp", "ArrowDown", keys, fy, c.height);
     if(p2.y < 0 + p2.h/2)
     {
         p2.y = 0 + p2.h/2;
@@ -125,6 +124,8 @@ function main()
         ball.y = c.height/2;
         ball.vx = -2;
     }
+    
+    
     //draw the objects
     p1.draw()
     p2.draw()
