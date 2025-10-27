@@ -1,3 +1,6 @@
+var c = document.querySelector("#pong");
+var ctx = c.getContext("2d");
+
 class Box
 {
     constructor()
@@ -46,4 +49,22 @@ class Box
         return false
     }
 
+    
+
 }
+
+var p1 = new Box();
+p1.w = 20;
+p1.h = 150;
+p1.x = p1.w / 2;
+p1.y = c.height / 2;
+
+p1.color = "blue";
+
+var p2 = new Box();
+p2.w = 20;
+p2.h = 150;
+p2.x = c.width - p2.w / 2;
+p2.y = c.height /2;
+p2.color = "red";
+
