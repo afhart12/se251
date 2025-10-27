@@ -28,6 +28,10 @@ ball.vx = -2
 ball.vy = -2
 ball.color = `black`
 
+let obj = new Player();
+obj.add("Player1");
+obj.add("Player2");
+
 function main()
 {
     //erases the canvas

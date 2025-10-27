@@ -2,9 +2,25 @@ class Player
 {
     constructor()
     {
-        this.name;
-        this.score;
-        this.highScore;
-        this.pad;
+        this.players = [];
     }
+
+    add(name, pad) {
+        this.players.push(
+            {
+                name: name,
+                score: 0,
+                highScore: 0,
+                pad: pad
+            }
+        );
+    }
+
+    get(index)
+    {
+        return this.players[index];
+
+    }
+
+    
 }
