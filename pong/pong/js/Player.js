@@ -22,9 +22,7 @@ class Player
         this.pad.vy *= friction;
         this.pad.move();
 
-        if (this.pad.y < this.pad.h / 2) this.pad.y = this.pad.h /2;
-        if (this.pad.y > canvasHeight - this.pad.h / 2) this.pad.y = canvasHeight
-
+        
     }
     draw()
     {
