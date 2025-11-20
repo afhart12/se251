@@ -20,6 +20,14 @@ let player = [];
 player[0] = new Player("Player 1", "blue", 30, c.height / 2);
 player[1] = new Player("Player 2", "red", c.width - 30, c.height / 2);
 
+function resetBall() {
+    ball.x = c.width / 2;
+    ball.y = c.height / 2;
+    ball.vx = -2;
+    ball.vy = -2;
+
+    console.log(`${player[0].score} | ${player[1].score}`);
+}
 
 function main()
 {
@@ -75,16 +83,17 @@ function main()
     }
 
     //ball collision 
-    if(ball.x < 0)
-    {
-        ball.x = c.width/2
-        ball.y  =c.height/2
+    if (ball.x < 0) {
+    player[1].score++; // Player 2 scores
+    resetBall();
     }
-    if(ball.x > c.width)
-    {
-        ball.x = c.width
-        ball.vx = -ball.vx
+    if (ball.x > c.width) {
+    player[0].score++; // Player 1 scores
+    resetBall();
     }
+    ctx.fillStyle = "black"; //displays score on screen
+    ctx.font = "30px Arial";
+    ctx.fillText(`${player[0].score} | ${player[1].score}`, c.width / 2 - 40, 40);
     if(ball.y < 0)
     {
         ball.y = 0
