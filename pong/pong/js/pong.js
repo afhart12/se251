@@ -49,49 +49,49 @@ function main()
     //p1 accelerates when key is pressed 
     if(keys[`w`])
     {
-       p1.vy += -p1.force
+       pad[0].vy += -pad[0].force
     }
 
     if(keys[`s`])
     {
-        p1.vy += p1.force
+        pad[0].vy += pad[0].force
     }
     //applies friction
-    p1.vy *= fy
+    pad[0].vy *= fy
     //player movement
-    p1.move("w", "s", keys, fy, c.height);
+    pad[0].move("w", "s", keys, fy, c.height);
     //p2 accelerates when key is pressed
     if(keys['w'])
     {
-        p2.vy += -p2.force;
+        pad[1].vy += -p2.force;
     }
     if(keys['s'])
     {
-        p2.vy += p2.force;
+        pad[1].vy += p2.force;
     }
 
     //friction
-    p2.vy *= fy;
-    p2.move("ArrowUp", "ArrowDown", keys, fy, c.height);
-    if(p2.y < 0 + p2.h/2)
+    pad[1].vy *= fy;
+    pad[1].move("ArrowUp", "ArrowDown", keys, fy, c.height);
+    if(pad[1].y < 0 + pad[1].h/2)
     {
-        p2.y = 0 + p2.h/2;
+        pad[1].y = 0 + pad[1].h/2;
     }
-    if(p2.y > c.height - p2.h/2)
+    if(pad[1].y > c.height - pad[1].h/2)
     {
-        p2.y = c.height - p2.h/2;
+        pad[1].y = c.height - pad[1].h/2;
     }
     //ball movement
     ball.move()
 
     //p1 collision
-    if(p1.y < 0+p1.h/2)
+    if(pad[0].y < 0+pad[0].h/2)
     {
-        p1.y = 0+p1.h/2
+        pad[0].y = 0+pad[0].h/2
     }
-    if(p1.y > c.height-p1.h/2)
+    if(pad[0].y > c.height-pad[0].h/2)
     {
-        p1.y = c.height-p1.h/2
+        pad[0].y = c.height-pad[0].h/2
     }
 
     //ball collision 
@@ -118,14 +118,14 @@ function main()
     }
 
     //p1 with ball collision
-    if(ball.collide(p1))
+    if(ball.collide(pad[0]))
     {
-        ball.x = p1.x + p1.w/2 + ball.w/2
+        ball.x = pad.x + pad[0].w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
-    else if(ball.collide(p2))
+    else if(ball.collide(pad[1]))
     {
-        ball.x = p2.x + p2.w/2 + ball.w/2
+        ball.x = pad[1].x + pad[1].w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
     if(ball.x > c.width)
@@ -137,7 +137,7 @@ function main()
     
     
     //draw the objects
-    p1.draw()
-    p2.draw()
+    pad[0].draw()
+    pad[1].draw()
     ball.draw()
 }
