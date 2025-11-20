@@ -14,16 +14,12 @@ ball.w = 20
 ball.h = 20
 ball.vx = -2
 ball.vy = -2
-ball.color = `black`
+ball.color = "black"
 
-var p1 = new Player("Player 1", "blue", 20, c.height/2);
-var p2 = new Player("Player 2", "red", c.width - 20, c.height/2);
 let player = [];
-player[0] = new Player();
-player[1] = new Player();
+player[0] = new Player("Player 1", "blue", 30, c.height / 2);
+player[1] = new Player("Player 2", "red", c.width - 30, c.height / 2);
 
-player[0].pad = new Box();
-player[1].pad = new Box();
 
 function main()
 {

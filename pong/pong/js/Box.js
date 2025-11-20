@@ -52,7 +52,7 @@ class Box
     
 
 }
-
+let player = [];
 player[0] = new Player("Player 1", "blue", 20, c.height/2);
 player[1] = new Player("Player 2", "red", c.width - 20, c.height/2);
 
