@@ -9,13 +9,13 @@ var timer = setInterval(main, 1000/60)
 var fy = .97
 
 //p1 setup
-var p1 = new Box();
+
 p1.w = 20
 p1.h = 150
 p1.x = 0 + p1.w/2
 
 //p2 setup
-var p2 = new Box();
+
 p2.w = 20
 p2.h = 150
 p2.x = c.width - p2.w / 2;
@@ -59,7 +59,7 @@ function main()
     //applies friction
     pad[0].vy *= fy
     //player movement
-    pad[0].move("w", "s", keys, fy, c.height);
+    player[0].move("w", "s", keys, fy, c.height);
     //p2 accelerates when key is pressed
     if(keys['w'])
     {
@@ -72,7 +72,7 @@ function main()
 
     //friction
     pad[1].vy *= fy;
-    pad[1].move("ArrowUp", "ArrowDown", keys, fy, c.height);
+    player[1].move("ArrowUp", "ArrowDown", keys, fy, c.height);
     if(pad[1].y < 0 + pad[1].h/2)
     {
         pad[1].y = 0 + pad[1].h/2;
@@ -120,7 +120,7 @@ function main()
     //p1 with ball collision
     if(ball.collide(pad[0]))
     {
-        ball.x = pad.x + pad[0].w/2 + ball.w/2
+        ball.x = pad[0].x + pad[0].w/2 + ball.w/2
         ball.vx = -ball.vx;
     }
     else if(ball.collide(pad[1]))
@@ -137,7 +137,7 @@ function main()
     
     
     //draw the objects
-    pad[0].draw()
-    pad[1].draw()
+    player[0].draw()
+    player[1].draw()
     ball.draw()
 }
