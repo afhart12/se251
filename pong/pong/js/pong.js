@@ -29,6 +29,8 @@ function resetBall() {
     console.log(`${player[0].score} | ${player[1].score}`);
 }
 
+const scoreDivs = document.querySelectorAll("#score div");
+
 function main()
 {
     //erases the canvas
@@ -129,4 +131,8 @@ function main()
     player[0].draw()
     player[1].draw()
     ball.draw()
+
+    for (let i = 0; i < scoreDivs.length; i++) {
+    scoreDivs[i].innerText = player[i].score; //updates divs with scores
+}
 }
