@@ -30,9 +30,16 @@ ball.color = `black`
 
 var p1 = new Player("Player 1", "blue", 20, c.height/2);
 var p2 = new Player("Player 2", "red", c.width - 20, c.height/2);
-let player = []
+let player = [];
 player[0] = new Player();
 player[1] = new Player();
+
+player[0].pad = new Box();
+player[1].pad = new Box();
+
+let pad = [];
+pad[0] = player[0].pad;
+pad[1] = player[1].pad;
 
 function main()
 {
