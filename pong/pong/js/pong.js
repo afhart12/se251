@@ -36,29 +36,28 @@ function main()
     //erases the canvas
     ctx.clearRect(0,0,c.width,c.height)
     
-    //p1 accelerates when key is pressed 
-    if(keys[`w`])
-    {
-       player[0].pad.vy += -player[0].pad.force
-    }
+    for (let i = 0; i < player.length; i++) {
+    const upKey = i === 0 ? "w" : "ArrowUp";
+    const downKey = i === 0 ? "s" : "ArrowDown";
 
-    if(keys[`s`])
-    {
-        player[0].pad.vy += player[0].pad.force
+    if (keys[upKey]) player[i].pad.vy += -player[i].pad.force;
+    if (keys[downKey]) player[i].pad.vy += player[i].pad.force;
+
+    player[i].pad.vy *= fy;
+    player[i].move(upKey, downKey, keys, fy, c.height);
+
+    if (player[i].pad.y < player[i].pad.h / 2) {
+        player[i].pad.y = player[i].pad.h / 2;
     }
+    if (player[i].pad.y > c.height - player[i].pad.h / 2) {
+        player[i].pad.y = c.height - player[i].pad.h / 2;
+    }
+        }
     //applies friction
     player[0].pad.vy *= fy
     //player movement
     player[0].move("w", "s", keys, fy, c.height);
-    //p2 accelerates when key is pressed
-    if(keys['w'])
-    {
-        player[1].pad.vy += -player[1].pad.force;
-    }
-    if(keys['s'])
-    {
-        player[1].pad.vy += player[1].pad.force;
-    }
+    
 
     //friction
     player[1].pad.vy *= fy;
