@@ -5,6 +5,7 @@ class User
     {
         this.score=0;
         this.highScore=0;
+        this.username = "Player"
         this.pad;
         this.fill="hotpink";
         this.stroke="#ffffff";

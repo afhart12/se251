@@ -24,6 +24,22 @@ const playerOptions = document.querySelectorAll(".op");
 playerOptions.forEach((panel, index) => {
     const currentPlayer = player[index];
 
+
+    // Username
+    const nameInput = panel.querySelector(".username");
+    const nameOutput = panel.querySelectorAll(".output")[0];
+    nameInput.value = currentPlayer.username || 'Player ${index+1}';
+    nameOutput.textContent = nameInput.value;
+
+    nameInput.addEventListener("input", e => {
+        currentPlayer.username = e.target.value;
+        nameOutput.textContent = e.target.value;
+    });
+
+    nameInput.addEventListener("focus", () => {
+        currentState = "pause";
+    });
+    
     // Fill color
     const fillInput = panel.querySelector(".fill");
     const fillOutput = panel.querySelectorAll(".output")[0];
