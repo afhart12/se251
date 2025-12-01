@@ -42,7 +42,7 @@ canvas{
     overflow-y:hidden;
     display: none;
 }
-.output{
+.op{
     width: 400px;
     color:#ffffff;
     display:grid;

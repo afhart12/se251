@@ -18,32 +18,32 @@ optionsHeading.addEventListener("click", () => {
         . Show the fill's hex code in the output div 
 
 -----------*/
-const fillInputs = document.querySelectorAll(".fill");
-const outputs = document.querySelectorAll(".output");
+const playerOptions = document.querySelectorAll(".op");
 
-function drawGame() {
-    ctx.clearRect(0, 0, c.width, c.height);
-    players.forEach(player => {
-        player.pad.draw();
-    })
-    ball.draw();
-}
-fillInputs.forEach((input, index) => {
-    const player = players[index];
-    const output = outputs[index];
 
-    input.value = player.pad.fill;
-    output.innerHTML = player.pad.fill;
+playerOptions.forEach((panel, index) => {
+    const currentPlayer = player[index];
 
-    input.addEventListener("input", (e) => {
-        const newColor = e.target.value;
-
-        player.pad.fill = newColor;
-
-        output.innerHTML = newColor;
-
+    // Fill color
+    const fillInput = panel.querySelector(".fill");
+    const fillOutput = panel.querySelectorAll(".output")[0];
+    fillInput.value = currentPlayer.pad.fill;
+    fillOutput.textContent = currentPlayer.pad.fill;
+    fillInput.addEventListener("input", e => {
+        currentPlayer.pad.fill = e.target.value;
+        fillOutput.textContent = e.target.value;
         drawGame();
-    });
+    }); });
+
+    // Stroke color
+    const strokeInput = panel.querySelector(".stroke");
+    const strokeOutput = panel.querySelectorAll(".output")[1];
+    strokeInput.value = currentPlayer.pad.stroke;
+    strokeOutput.textContent = currentPlayer.pad.stroke;
+    strokeInput.addEventListener("input", e => {
+        currentPlayer.pad.stroke = e.target.value;
+        strokeOutput.textContent = e.target.value;
+        drawGame();
 });
 
 /*---------

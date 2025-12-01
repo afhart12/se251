@@ -18,7 +18,20 @@ var player = [
     new User().setProps({h:150,  force:1, fill:`#ffff00`}),
     new User().setProps({h:150,  force:1, fill:`#ffff00`, keys:{u:`ArrowUp`, d:`ArrowDown`, s:`ArrowLeft`}})
 ]
+function drawGame() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    players.forEach(player => {
+        player.pad.move();
+        player.pad.draw();
+    })
+    ball.draw();
+    ball.move();
+} 
 
+function gameLoop() {
+    drawGame();
+    requestAnimationFrame(gameLoop);
+}
 
 init();
 
