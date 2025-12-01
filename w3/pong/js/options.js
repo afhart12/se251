@@ -33,7 +33,7 @@ playerOptions.forEach((panel, index) => {
         currentPlayer.pad.fill = e.target.value;
         fillOutput.textContent = e.target.value;
         drawGame();
-    }); });
+    });
 
     // Stroke color
     const strokeInput = panel.querySelector(".stroke");
@@ -44,6 +44,52 @@ playerOptions.forEach((panel, index) => {
         currentPlayer.pad.stroke = e.target.value;
         strokeOutput.textContent = e.target.value;
         drawGame();
+    }); // <-- this closing brace was missing
+
+    // UP key
+    const upInput = panel.querySelector(".u");
+    const upOutput = panel.querySelectorAll(".output")[2];
+    upInput.value = currentPlayer.keys.u || "";
+    upOutput.textContent = currentPlayer.keys.u || "";
+    upInput.addEventListener("keydown", e => {
+        e.preventDefault();
+        upInput.value = e.key;
+        currentPlayer.keys.u = e.key;
+        upOutput.textContent = e.key;
+    });
+    upInput.addEventListener("focus", () => {
+        currentState = "pause";
+    });
+
+    // DOWN key
+    const downInput = panel.querySelector(".d");
+    const downOutput = panel.querySelectorAll(".output")[3];
+    downInput.value = currentPlayer.keys.d || "";
+    downOutput.textContent = currentPlayer.keys.d || "";
+    downInput.addEventListener("keydown", e => {
+        e.preventDefault();
+        downInput.value = e.key;
+        currentPlayer.keys.d = e.key;
+        downOutput.textContent = e.key;
+    });
+    downInput.addEventListener("focus", () => {
+        currentState = "pause";
+    });
+
+    // STRAIGHT key
+    const straightInput = panel.querySelector(".s");
+    const straightOutput = panel.querySelectorAll(".output")[4];
+    straightInput.value = currentPlayer.keys.s || "";
+    straightOutput.textContent = currentPlayer.keys.s || "";
+    straightInput.addEventListener("keydown", e => {
+        e.preventDefault();
+        straightInput.value = e.key;
+        currentPlayer.keys.s = e.key;
+        straightOutput.textContent = e.key;
+    });
+    straightInput.addEventListener("focus", () => {
+        currentState = "pause";
+    });
 });
 
 /*---------
@@ -54,3 +100,7 @@ playerOptions.forEach((panel, index) => {
         .Change the player's key to the value of the input
         .Show the player's key in the output div 
 -----------*/
+
+
+
+
