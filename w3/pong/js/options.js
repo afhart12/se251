@@ -18,6 +18,33 @@ optionsHeading.addEventListener("click", () => {
         . Show the fill's hex code in the output div 
 
 -----------*/
+const fillInputs = document.querySelectorAll(".fill");
+const outputs = document.querySelectorAll(".output");
+
+function drawGame() {
+    ctx.clearRect(0, 0, c.width, c.height);
+    players.forEach(player => {
+        player.pad.draw();
+    })
+    ball.draw();
+}
+fillInputs.forEach((input, index) => {
+    const player = players[index];
+    const output = outputs[index];
+
+    input.value = player.pad.fill;
+    output.innerHTML = player.pad.fill;
+
+    input.addEventListener("input", (e) => {
+        const newColor = e.target.value;
+
+        player.pad.fill = newColor;
+
+        output.innerHTML = newColor;
+
+        drawGame();
+    });
+});
 
 /*---------
     Program the six key inputs to do the following:
