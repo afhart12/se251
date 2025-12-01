@@ -6,9 +6,15 @@
 if(localStorage.getItem(`posts`))
 {
     var posts = JSON.parse(localStorage.getItem(`posts`));
-    posts.forEach(value=>$(`#output`).innerHTML += value)
+    posts.forEach(value => {
+        $("#output").insertAdjacentHTML("beforeend", value);
+    });
 }
 
+function savePosts() {
+    var arr = Array.from(document.querySelectorAll(".post")).map(el => el.outerHTML);
+    localStorage.setItem("posts", JSON.stringify(arr));
+}
 /*
     When the `Add` button is clicked:
         creates a div for a post
@@ -22,25 +28,61 @@ if(localStorage.getItem(`posts`))
         create an array of the post's outerHTML strings
         Store the array in local storage as a JSON String
 */
+
+//add new post
 $(`button`)[0].addEventListener(`click`, e=>{
     let post = document.createElement(`div`);
     post.setAttribute(`class`,`post`);  
+    post.classList.add("post");
+
     let check = document.createElement(`input`);
-    check.setAttribute(`type`,`checkbox`)
-    check.classList.add(`hidden`)
+    check.setAttribute(`type`,`checkbox`);
+    check.classList.add("hidden");
+    
+
     let p = document.createElement(`p`);
     p.innerHTML = $(`textarea`).value
+
     let time = document.createElement(`time`);
     time.innerHTML = new Date().toLocaleTimeString();
-    post.appendChild(check)
-    post.appendChild(time)
-    post.appendChild(p)
-    $(`#output`).appendChild(post)
 
-    var arr = Array.from($(`.post`)).map(value=>value.outerHTML)
-    
-    localStorage.setItem(`posts`,JSON.stringify(arr))
-})
+    post.appendChild(check);
+    post.appendChild(time);
+    post.appendChild(p);
+    $(`#output`).appendChild(post);
+    savePosts();
+});
+
+    // bulk delete button
+$("#bulk").addEventListener("click", () => {
+    document.querySelectorAll(".post input[type=checkbox]").forEach(cb => {
+        cb.classList.toggle("hidden");
+    });
+
+    $("#all").classList.toggle("hidden");
+    $("#confirm").classList.toggle("hidden");
+});
+
+    //select all button
+$("#all").addEventListener("click", () => {
+    document.querySelectorAll(".post input[type=checkbox]").forEach(cb => {
+        cb.checked = true;
+    });
+});
+
+    //confirm button
+
+$("#confirm").addEventListener("click", () => {
+    document.querySelectorAll(".post").forEach(post => {
+        var cb = post.querySelector("input[type=checkbox]");
+        if (cb.checked) {
+            post.remove();
+        }
+    });
+    savePosts();
+});
+
+
 
 
 
